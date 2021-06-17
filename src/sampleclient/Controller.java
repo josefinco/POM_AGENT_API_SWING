@@ -3,13 +3,11 @@ package sampleclient;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.KeyStore;
-import java.security.SecureRandom;
 import java.util.Calendar;
 
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManagerFactory;
-import javax.swing.JTextArea;
 
 import com.avaya.sdk.PAMSocketInfo;
 import com.avaya.sdk.POMAgentFactory;
@@ -147,7 +145,6 @@ public class Controller {
 	}
 
 	public static void login() {
-		TestSDK_WBuilder.textArea_logs.append("\nteste");
 		
 
 		try {
@@ -233,10 +230,10 @@ public class Controller {
 			TestSDK_WBuilder.textArea_logs.append("\nReceived cert File path: " + trustStore);
 			char[] passphrase = password.toCharArray();
 			KeyStore ks = null;
-			SecureRandom secureRandom = null;
+//			SecureRandom secureRandom = null;
 			if (fipsMode == 1) {
 				TestSDK_WBuilder.textArea_logs.append("\nArguments provided in FIPS mode: ");
-				secureRandom = SecureRandom.getInstance("DEFAULT", "BCFIPS");
+//				secureRandom = SecureRandom.getInstance("DEFAULT", "BCFIPS");
 				ks = KeyStore.getInstance("BCFKS", "BCFIPS");
 			} else {
 				TestSDK_WBuilder.textArea_logs.append("\nRunning in normal mode: ");

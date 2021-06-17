@@ -506,7 +506,6 @@ public class SDKWorker implements POMAgentHandlerInterface
 	@Override
 	public void AGTLogoffRESP(int result) throws Exception {
 		
-		TestSDK.exitThread();
 		TestSDK_WBuilder.textArea_logs.append("\nAGTLogoffRESP done.");
 		
 	}

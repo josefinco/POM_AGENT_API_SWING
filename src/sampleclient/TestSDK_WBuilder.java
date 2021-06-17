@@ -1,6 +1,5 @@
 package sampleclient;
 
-import java.awt.Button;
 import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -8,17 +7,15 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.Label;
 import java.awt.Panel;
+import java.awt.ScrollPane;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
-import javax.swing.JButton;
 import javax.swing.SwingConstants;
-import javax.swing.JScrollBar;
-import javax.swing.DropMode;
-import javax.swing.JPanel;
 
 public class TestSDK_WBuilder {
 
@@ -34,8 +31,6 @@ public class TestSDK_WBuilder {
 
 	public JFrame frame;
 	public static JTextArea textArea_logs = new JTextArea();
-	private final JButton btnlogin = new JButton("Login");
-	private final JButton btnlogout = new JButton("Logout");
 
 	/**
 	 * Launch the application.
@@ -69,14 +64,14 @@ public class TestSDK_WBuilder {
 		frame.setBounds(100, 100, 791, 322);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] { 357, 406, 0 };
-		gridBagLayout.rowHeights = new int[] { 229, 0, 0, 0 };
+		gridBagLayout.columnWidths = new int[] { 208, 332, 0 };
+		gridBagLayout.rowHeights = new int[] { 283, 0 };
 		gridBagLayout.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-		gridBagLayout.rowWeights = new double[] { 0.0, 1.0, 0.0, Double.MIN_VALUE };
+		gridBagLayout.rowWeights = new double[] { 0.0, Double.MIN_VALUE };
 		frame.getContentPane().setLayout(gridBagLayout);
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.fill = GridBagConstraints.BOTH;
-		gbc_panel.insets = new Insets(0, 0, 5, 5);
+		gbc_panel.insets = new Insets(0, 0, 0, 5);
 		gbc_panel.gridx = 0;
 		gbc_panel.gridy = 0;
 		frame.getContentPane().add(panel, gbc_panel);
@@ -129,24 +124,9 @@ public class TestSDK_WBuilder {
 		panel.add(textField_skillnumber);
 		panel.add(label_5_2);
 		panel.add(textField_skillpriority);
-		GridBagConstraints gbc_textArea_logs = new GridBagConstraints();
-		gbc_textArea_logs.insets = new Insets(0, 0, 5, 0);
-		gbc_textArea_logs.fill = GridBagConstraints.BOTH;
-		gbc_textArea_logs.gridx = 1;
-		gbc_textArea_logs.gridy = 0;
-		textArea_logs.setRows(10);
-		textArea_logs.setLineWrap(true);
-		textArea_logs.setEditable(false);
-		frame.getContentPane().add(textArea_logs, gbc_textArea_logs);
-
-		GridBagConstraints gbc_btnlogin = new GridBagConstraints();
-		gbc_btnlogin.anchor = GridBagConstraints.WEST;
-		gbc_btnlogin.insets = new Insets(0, 0, 5, 5);
-		gbc_btnlogin.gridx = 0;
-		gbc_btnlogin.gridy = 1;
+		panel.add(btnlogin);
 		btnlogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 
 				String[] skarray = new String[3];
 				try {
@@ -172,46 +152,47 @@ public class TestSDK_WBuilder {
 					System.out.println("Exception: " + e2.getMessage());
 				}
 				
-				
-
-				
-				
 			}
 		});
 		btnlogin.setHorizontalAlignment(SwingConstants.LEFT);
-		frame.getContentPane().add(btnlogin, gbc_btnlogin);
-
-		GridBagConstraints gbc_btnlogout = new GridBagConstraints();
-		gbc_btnlogout.anchor = GridBagConstraints.WEST;
-		gbc_btnlogout.insets = new Insets(0, 0, 0, 5);
-		gbc_btnlogout.gridx = 0;
-		gbc_btnlogout.gridy = 2;
+		panel.add(btnlogout);
 		btnlogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
-		
-		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
-		gbc_panel_1.insets = new Insets(0, 0, 5, 0);
-		gbc_panel_1.fill = GridBagConstraints.BOTH;
-		gbc_panel_1.gridx = 1;
-		gbc_panel_1.gridy = 1;
-		frame.getContentPane().add(panel_1, gbc_panel_1);
-		frame.getContentPane().add(btnlogout, gbc_btnlogout);
+
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridx = 1;
+		gbc_scrollPane.gridy = 0;
+		frame.getContentPane().add(scrollPane, gbc_scrollPane);
+		GridBagConstraints gbc_textArea_logs = new GridBagConstraints();
+		gbc_textArea_logs.insets = new Insets(0, 0, 5, 0);
+		gbc_textArea_logs.fill = GridBagConstraints.BOTH;
+		gbc_textArea_logs.gridx = 1;
+		gbc_textArea_logs.gridy = 1;
+		textArea_logs.setTabSize(10);
+		textArea_logs.setRows(10);
+		textArea_logs.setLineWrap(true);
+		textArea_logs.setEditable(false);
+		scrollPane.add(textArea_logs);
 
 	}
 
-    private static Runnable login = new Runnable() {
-        public void run() {
-            try{
-            	Controller.login();
-            } catch (Exception e){}
+	private static Runnable login = new Runnable() {
+		public void run() {
+			try {
+				Controller.login();
+			} catch (Exception e) {
+			}
 
-        }
-    };
-    private final JPanel panel_1 = new JPanel();
-			
+		}
+	};
+	private final ScrollPane scrollPane = new ScrollPane();
+	private final JButton btnlogin = new JButton("Login");
+	private final JButton btnlogout = new JButton("Logout");
+
 //		
 
 }
